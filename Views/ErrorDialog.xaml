@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="NewCal.Views.ErrorDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="180" d:DesignWidth="380"
+             Width="380" Height="180">
+
+    <!-- 外层用透明背景让弹窗本身呈卡片效果 -->
+    <Grid Background="Transparent" Margin="8">
+        <!-- 卡片（圆角、阴影） -->
+        <Border CornerRadius="10" Background="White" Padding="12" 
+                BorderBrush="#E6E6E6" BorderThickness="1">
+            <Border.Effect>
+                <!-- 轻微阴影，提升"卡片"感 -->
+                <DropShadowEffect Color="#333" BlurRadius="8" Opacity="0.12" ShadowDepth="3"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- 标题行 -->
+                    <RowDefinition Height="*"/>
+                    <!-- 内容 -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- 按钮 -->
+                </Grid.RowDefinitions>
+
+                <!-- 标题行：图标 + 标题 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" Margin="4,0,4,8">
+                    <TextBlock Text="❗" FontSize="20" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBlock Text="温馨提示" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- 内容文本：自动换行 -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <TextBlock Text="{Binding Message}" FontSize="14" TextWrapping="Wrap" 
+                               Margin="4" Foreground="#333" />
+                </ScrollViewer>
+
+                <!-- 按钮区：居中 -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
+                    <!-- 普通 Button：如果 HandyControl 资源已合并会自动用了 HC 的样式 -->
+                    <Button Content="确定"
+                            Command="{Binding CloseCommand}"
+                            Width="110" Height="36"
+                            Margin="6,0"
+                            HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
