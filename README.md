@@ -1,1 +1,2 @@
 # NewCal
+基于MVVM和prism框架制作的简易计算器，界面美化使用了HandyControl库
